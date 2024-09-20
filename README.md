@@ -1,12 +1,12 @@
-# Mineração de Tweets com Twikit
+# Mineração de Tuítes com Twikit
 
 Este repositório contém um script modificado para a mineração de tweets utilizando o Twikit.
 
 ## Créditos
 
 - **Base Original:** [Twikit](https://github.com/d60/twikit)
-- **Script:** Desenvolvido e adaptado por André Trevisol Trindade.
-- **Utilização:** Frederico Salmi utilizou este script em sua pesquisa.
+- **Contribuição dos autores (taxonomia CRediT)**: Concepção, Supervisão e Validação: FS. Software (Script base): HP, KT. Curadoria dos dados e Metodologia: FS, AT. Software (Script adaptado): AT. Legenda: FS: Frederico Salmi, AT: André Trevisol Trindade. HP: Hallison Paz. KT: Kizzy Terra.
+- **Citação sugerida (ABNT)**: Salmi, Frederico; Trindade, André Trevisol. Mineração de Tuítes com Twikit. GitHub: Attrindade, 2024. Disponível em: https://github.com/attrindade/twikit-clima.
 
 ## Atualizações Futuras
 
