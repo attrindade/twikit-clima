@@ -1,7 +1,3 @@
-Aqui está um exemplo de README sucinto que inclui os créditos conforme solicitado:
-
----
-
 # Mineração de Tweets com Twikit
 
 Este repositório contém um script modificado para a mineração de tweets utilizando o Twikit.
