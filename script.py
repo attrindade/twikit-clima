@@ -2,11 +2,8 @@ import asyncio
 import pandas as pd
 from twikit import Client
 from datetime import datetime
+import re
 
-# Solicita as informações do usuário
-USERNAME = '###'
-EMAIL = '###@gmail.com'
-PASSWORD = '###'
 
 # Solicita as informações para a query
 # user_to_search = input("Digite o usuário que deseja buscar (sem @): ")
@@ -14,17 +11,19 @@ PASSWORD = '###'
 # until_date = input("Digite a data de término (formato yyyy-mm-dd): ")
 
 # Compõe a query
-query = f'from:obsclima since:2023-01-01 until:2024-01-01'
+query = f'(inserir query aqui)' ## Query da busca
 
 # Inicializa o cliente
 client = Client('en-US')
 
+# Função para extrair menções do texto do tweet
+def extract_mentions(text):
+    # Regex para capturar @Usuario ou @Joaozinho
+    return re.findall(r'@\w+', text)
+
 async def main():
-    await client.login(
-        auth_info_1=USERNAME,
-        auth_info_2=EMAIL,
-        password=PASSWORD
-    )
+
+    client.load_cookies('cookies.json')
 
     retry_delay = 600
 
@@ -35,7 +34,6 @@ async def main():
     i = 0
 
     tweets = await client.search_tweet(query, product)
-    print("query na busca feita")
     
     while len(tweets) > 0:
         try:        
@@ -51,6 +49,10 @@ async def main():
                     "numretweet": tweet.retweet_count,
                     "numreplies": tweet.reply_count,
                     "numviews": tweet.view_count,
+                    "mencoes": extract_mentions(tweet.text),  # Adiciona as menções ao dicionário
+                    "hashtags": tweet.hashtags,
+                    "url": f"https://x.com/{tweet.user.name.lower()}/status/{tweet.id}",
+                    # "urls_dentro": tweet.urls,
                     "texto": tweet.text
                 }
                 all_tweets.append(tweet_data)
@@ -74,7 +76,7 @@ async def main():
     df = pd.DataFrame(all_tweets)
     
     # Salva para Excel
-    file_name = f"tweets_obsclima_23.xlsx"
+    file_name = f"tweets_final.xlsx"
     df.to_excel(file_name, index=False)
     print(f"Saved to {file_name}")
 
